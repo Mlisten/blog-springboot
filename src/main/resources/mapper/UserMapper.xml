@@ -1,0 +1,65 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tenyear.blog.mapper.UserMapper">
+    <resultMap id="userVO" type="cn.tenyear.blog.modle.vo.UserVO">
+        <id property="id" column="id"/>
+        <result column="phone" property="phone"/>
+        <result column="username" property="username"/>
+        <result column="create_Time" property="createTime"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_id" property="roleId"/>
+        <result column="sex" property="sex"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="listUserVO" resultType="arraylist" resultMap="userVO">
+        select
+        t_user.id,
+        t_user.phone,
+        t_user.username,
+        t_user.create_time,
+        t_user.update_time,
+        t_role.name as role_name,
+        t_user.role_id,
+        t_user.sex,
+        t_user.status
+        from t_user left join t_role on t_user.role_id = t_role.id
+        where t_role.id = 10
+        <if test="search!=''">
+            and t_user.username like #{search}
+        </if>
+        order by t_role.name limit #{pageIndex},#{pageSize}
+    </select>
+    <select id="listSysUserVO" resultType="arraylist" resultMap="userVO">
+        select
+        t_user.id,
+        t_user.phone,
+        t_user.username,
+        t_user.create_time,
+        t_user.update_time,
+        t_role.name as role_name,
+        t_user.role_id,
+        t_user.sex,
+        t_user.status
+        from t_user left join t_role on t_user.role_id = t_role.id
+        where 10 > t_role.id
+        <if test="search!=''">
+            and t_user.username like #{search}
+        </if>
+        order by t_role.name limit #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="getOneUserVO" resultMap="userVO">
+        select t_user.id,t_user.phone,t_user.username,t_user.create_time,t_role.name as role_describe,t_user.role_id,t_user.sex,t_user.status
+        from t_user left join t_role  on t_user.role_id = t_role.id
+        where t_user.id = #{id}
+    </select>
+
+    <select id="countByUser" resultType="long">
+        select count(id) from t_user where role_id >= 10
+    </select>
+    <select id="countBySysUser" resultType="long">
+        select count(id) from t_user where 10 > role_id
+    </select>
+</mapper>

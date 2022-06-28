@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: springfox
+  profiles:
+    active: prod
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher  # springboot 2.6 与 swagger3 冲突
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+  config:
+    location: cn.tenyear.blog.config
+
+  #开启 redis 连接池
+  redis:
+    lettuce:
+      pool:
+        enabled: true
+  freemarker:
+    charset: UTF-8
+
+# http://localhost:8082/swagger-ui/index.html
+swagger:
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: springfox swagger 3.0整合
+  try-host: http://localhost:${server.port}
+server:
+  servlet:
+    encoding:
+      charset: UTF-8

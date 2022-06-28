@@ -1,0 +1,13 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tenyear.blog.mapper.TypeMapper">
+
+    <select id="listTypes" resultType="map">
+        select
+            t_type.id ,
+            t_type.name ,
+            (select count(*) from t_article where t_type.id = t_article.type_id and t_article.overt = 1) as count
+        from t_type ;
+    </select>
+</mapper>

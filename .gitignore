@@ -1,0 +1,23 @@
+### SVN template
+.svn/
+
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea/
+*.iml
+out
+gen
+
+local.properties
+
+.gitattributes
+
+# IntelliJ
+/out/
+/target/
+
+src/main/resources/application-prod.yaml
+
+src/test/

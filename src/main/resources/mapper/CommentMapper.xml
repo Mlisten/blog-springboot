@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tenyear.blog.mapper.CommentMapper">
+    <resultMap id="CommentVO" type="cn.tenyear.blog.modle.vo.CommentVO">
+        <id property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="articleId" column="article_id"/>
+        <result property="username" column="username"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+    <select id="listCommentVOsByArticleId" resultType="list" resultMap="CommentVO">
+        select id, user_id, article_id, content, create_time, update_time ,
+               (select title from t_article where t_article.id=article_id) as title,
+               (select username from t_user where t_user.id=user_id) as username
+        from t_comment where t_comment.article_id = #{articleId} limit #{index},#{pageSize};
+    </select>
+    <select id="listCommentVOsUseOnlyOvert" resultType="list" resultMap="CommentVO">
+        select id, user_id, article_id, content, create_time, update_time ,
+               (select title from t_article where t_article.id=article_id) as title,
+               (select username from t_user where t_user.id=user_id) as username
+        from t_comment
+        <if test="onlyOvert">
+            where (select t_article.overt from t_article where article_id = t_article.id) = 1
+        </if>
+        limit #{index},#{pageSize};
+    </select>
+
+
+
+    <select id="listCount" resultType="integer">
+        select count(t_comment.id) from t_comment
+        <if test="onlyOvert">
+            where (select t_article.overt from t_article where article_id = t_article.id) = 1
+        </if>
+    </select>
+</mapper>

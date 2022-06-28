@@ -1,0 +1,13 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tenyear.blog.mapper.TagMapper">
+
+<!--    <select id="listTags" resultType="map">-->
+<!--        select-->
+<!--               t_tag.id,t_tag.name ,-->
+<!--               ( select count(*)  from t_article where t_article.overt = 1 and t_article.tag_id  regexp (t_tag.id+',' | tag_id+']') ) as count-->
+<!--        from t_tag ;-->
+<!--    </select>-->
+</mapper>
