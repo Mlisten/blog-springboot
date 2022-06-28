@@ -59,13 +59,6 @@
             <artifactId>springfox-boot-starter</artifactId>
             <version>${springfox.version}</version>
         </dependency>
-        <!-- sa-token -->
-        <!--        <dependency>-->
-        <!--            <groupId>cn.dev33</groupId>-->
-        <!--            <artifactId>sa-token-spring-boot-starter</artifactId>-->
-        <!--            <version>${sa-token.version}</version>-->
-        <!--        </dependency>-->
-
         <!-- spring web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
