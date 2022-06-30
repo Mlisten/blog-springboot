@@ -1,4 +1,4 @@
-package cn.tenyear.blog.config;
+package cn.tenyear.blog.config.swagger;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

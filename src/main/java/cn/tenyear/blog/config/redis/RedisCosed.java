@@ -1,4 +1,4 @@
-package cn.tenyear.blog.config;
+package cn.tenyear.blog.config.redis;
 
 /**
  * @author 李胜旺

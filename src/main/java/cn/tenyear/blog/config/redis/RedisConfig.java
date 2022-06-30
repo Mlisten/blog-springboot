@@ -1,4 +1,4 @@
-package cn.tenyear.blog.config;
+package cn.tenyear.blog.config.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
